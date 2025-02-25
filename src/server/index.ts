@@ -16,25 +16,28 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Automatically load all route files from the /api directory
-const loadApiRoutes = () => {
+const loadApiRoutes = async () => {
   const apiDir = path.join(__dirname, "../app/api");
-  const apiFiles = glob.sync(`${apiDir}/**/*.ts`);
+  const apiFiles = await glob(`${apiDir}/**/*.ts`); // Use await for glob
 
-  apiFiles.forEach((file) => {
+  for (const file of apiFiles) {
     const routePath = file.replace(apiDir, "").replace(".ts", "");
-
-    // Dynamically import each route file and handle errors
-    import(file)
-      .then((routeModule) => {
-        const route = routeModule.default;
-        app.use(`/api${routePath}`, route); // Mount the route
-        console.log(`Loaded route: /api${routePath}`); // For debugging
-      })
-      .catch((err) => {
-        console.error(`Error loading route ${routePath}:`, err);
-      });
-  });
+    try {
+      const routeModule = await import(file);
+      const route = routeModule.default;
+      app.use(`/api${routePath}`, route);
+      console.log(`Loaded route: /api${routePath}`);
+    } catch (err) {
+      console.error(`Error loading route ${routePath}:`, err);
+    }
+  }
 };
+
+app.use(express.static(path.join(__dirname, "../../dist")));
+
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "../../dist/index.html"));
+});
 
 const startServer = async () => {
   try {
