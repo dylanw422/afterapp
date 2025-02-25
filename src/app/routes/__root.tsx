@@ -9,10 +9,8 @@ export const Route = createRootRoute({
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="bg-background h-[100dvh]">
         <Outlet />
-        <div className="absolute flex bottom-0 left-0 p-2 bg-background">
-          <ThemeIcon />
-          {/* <TanStackRouterDevtools position="bottom-right" /> */}
-        </div>
+        <ThemeIcon />
+        {/* <TanStackRouterDevtools position="bottom-right" /> */}
       </div>
     </ThemeProvider>
   ),
@@ -21,15 +19,17 @@ export const Route = createRootRoute({
 const ThemeIcon = () => {
   const { theme, setTheme } = useTheme();
   return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="border rounded-full aspect-square p-1 hover:cursor-pointer text-primary/75"
-    >
-      {theme === "dark" ? (
-        <Moon className="w-5 h-5" />
-      ) : (
-        <Sun className="w-5 h-5" />
-      )}
-    </button>
+    <div className="absolute flex bottom-0 left-0 p-2 bg-background">
+      <button
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        className="border rounded-full aspect-square p-1 hover:cursor-pointer text-primary/75"
+      >
+        {theme === "dark" ? (
+          <Moon className="w-5 h-5" />
+        ) : (
+          <Sun className="w-5 h-5" />
+        )}
+      </button>
+    </div>
   );
 };
