@@ -5,8 +5,13 @@
   "scripts": {
     "start": "concurrently \"vite\" \"nodemon\"",
     "build": "vite build && tsc",
-    "serve": "vite preview",
-    "test": "vitest run"
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:all": "npm run build && npm run build:server",
+    "serve": "NODE_ENV=production node dist-server/server/index.js",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint": "eslint src --ext ts,tsx",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",

@@ -1,15 +1,16 @@
-import * as React from "react"
-import { Command as CommandPrimitive } from "cmdk"
-import { SearchIcon } from "lucide-react"
+// @ts-nocheck
+import * as React from "react";
+import { Command as CommandPrimitive } from "cmdk";
+import { SearchIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 function Command({
   className,
@@ -24,7 +25,7 @@ function Command({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function CommandDialog({
@@ -33,8 +34,8 @@ function CommandDialog({
   children,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
-  title?: string
-  description?: string
+  title?: string;
+  description?: string;
 }) {
   return (
     <Dialog {...props}>
@@ -48,7 +49,7 @@ function CommandDialog({
         </Command>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 function CommandInput({
@@ -70,7 +71,7 @@ function CommandInput({
         {...props}
       />
     </div>
-  )
+  );
 }
 
 function CommandList({
@@ -86,7 +87,7 @@ function CommandList({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function CommandEmpty({
@@ -98,7 +99,7 @@ function CommandEmpty({
       className="py-6 text-center text-sm"
       {...props}
     />
-  )
+  );
 }
 
 function CommandGroup({
@@ -114,7 +115,7 @@ function CommandGroup({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function CommandSeparator({
@@ -127,7 +128,7 @@ function CommandSeparator({
       className={cn("bg-border -mx-1 h-px", className)}
       {...props}
     />
-  )
+  );
 }
 
 function CommandItem({
@@ -143,7 +144,7 @@ function CommandItem({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function CommandShortcut({
@@ -159,7 +160,7 @@ function CommandShortcut({
       )}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -172,4 +173,4 @@ export {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-}
+};

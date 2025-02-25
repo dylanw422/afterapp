@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+// import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 
