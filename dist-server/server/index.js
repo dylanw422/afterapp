@@ -31,9 +31,11 @@ const distPath = path.join(projectRoot, "dist");
 // Automatically load all route files from the /api directory
 const loadApiRoutes = async () => {
     const apiDir = path.join(__dirname, "../app/api");
-    const apiFiles = await glob(`${apiDir}/**/*.ts`);
+    // In production, we need to look for .js files, not .ts files
+    const extension = isProduction ? "js" : "ts";
+    const apiFiles = await glob(`${apiDir}/**/*.${extension}`);
     for (const file of apiFiles) {
-        const routePath = file.replace(apiDir, "").replace(".ts", "");
+        const routePath = file.replace(apiDir, "").replace(`.${extension}`, ""); // Use the correct extension
         try {
             const routeModule = await import(file);
             const route = routeModule.default;
