@@ -9,7 +9,10 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({ autoCodeSplitting: true }),
+    TanStackRouterVite({
+      routesDirectory: "./src/app/routes",
+      autoCodeSplitting: true,
+    }),
     viteReact(),
     tailwindcss(),
   ],
