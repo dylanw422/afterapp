@@ -13,7 +13,7 @@ const text = [
     title: "AFTER APP",
     description:
       "A modern fullstack framework built with React, TanStack Router, and Node.js",
-    link: "https://reactafter.vercel.app/docs/after-app",
+    link: "https://reactafterdocs.vercel.app/docs/after-app/installation",
   },
 ];
 
