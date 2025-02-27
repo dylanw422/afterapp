@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { glob } from "glob";
 import { fileURLToPath } from "url";
+import chalk from "chalk";
 import fs from "fs"; // Import Node.js file system module
 
 type HttpMethod =
@@ -80,7 +81,7 @@ const loadApiRoutes = async (app: express.Application) => {
         // Check if it exports a default function (simplest case)
         if (typeof routeModule.default === "function") {
           app.get(endpoint, routeModule.default);
-          console.log(`Loaded default GET handler for ${endpoint}`);
+          // console.log(`Loaded default GET handler for ${endpoint}`);
           continue; // Skip to next file
         }
 
@@ -101,9 +102,9 @@ const loadApiRoutes = async (app: express.Application) => {
           for (const method of methods) {
             if (typeof handler[method] === "function") {
               callExpressMethod(app, method, endpoint, handler[method]);
-              console.log(
-                `Loaded ${method.toUpperCase()} handler for ${endpoint}`
-              );
+              // console.log(
+              //   `Loaded ${method.toUpperCase()} handler for ${endpoint}`
+              // );
               methodFound = true;
             }
           }
@@ -135,7 +136,7 @@ const loadApiRoutes = async (app: express.Application) => {
           if (typeof routeModule[upperMethod] === "function") {
             const method = upperMethod.toLowerCase() as HttpMethod;
             callExpressMethod(app, method, endpoint, routeModule[upperMethod]);
-            console.log(`Loaded ${upperMethod} handler for ${endpoint}`);
+            // console.log(`Loaded ${upperMethod} handler for ${endpoint}`);
             namedExportFound = true;
           }
         }
@@ -181,7 +182,9 @@ const startServer = async () => {
 
     app.listen(port, () => {
       console.log(
-        `Server running on http://localhost:${port} in ${isProduction ? "production" : "development"} mode`
+        chalk.green(
+          `App is running in ${isProduction ? "production" : "development"} mode!`
+        )
       );
     });
   } catch (err) {
