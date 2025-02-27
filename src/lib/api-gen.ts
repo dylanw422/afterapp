@@ -5,34 +5,29 @@ import { exec } from "child_process";
 import chokidar from "chokidar";
 
 const API_ROUTES_DIR = path.resolve(process.cwd(), "src/app/api");
-const TEMPLATE = `import { Router } from "express";
-import type { Request, Response } from "express";
-
-const router = Router();
+const TEMPLATE = `import type { Request, Response } from "express";
 
 /**
  * @route GET /api{{routePath}}
  * @desc Get data from this endpoint
  */
-router.get("/", (req: Request, res: Response) => {
-  res.json({ 
-    message: "Route {{routeName}} is working!",
-    query: req.query
-  });
-});
+export function GET(_req: Request, res: Response) {
+  return res.json({ msg: "Hello from {{routePath}}: GET" });
+}
 
 /**
  * @route POST /api{{routePath}}
  * @desc Create new data
  */
-router.post("/", (req: Request, res: Response) => {
-  res.status(201).json({ 
-    message: "Resource created successfully",
-    body: req.body
-  });
-});
+export function POST(req: Request, res: Response) {
+  const { name, email } = req.body;
 
-export default router;
+  if (!name || !email) {
+    return res.status(400).json({ msg: "Missing name or email" });
+  }
+
+  return res.json({ msg: "Hello from {{routePath}}: POST" });
+}
 `;
 
 // Ensure API routes directory exists
