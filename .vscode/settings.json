@@ -6,6 +6,8 @@
     "**/routeTree.gen.ts": true
   },
   "files.readonlyInclude": {
-    "**/routeTree.gen.ts": true
+    "**/routeTree.gen.ts": true,
+    ".after/server/index.ts": true,
+    ".after/api-gen.ts": true
   }
 }
