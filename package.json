@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "concurrently \"vite\" \"nodemon\"",
+    "start": "concurrently \"vite\" \"nodemon\" \"npm run watch:routes\"",
     "build": "vite build && tsc",
     "build:server": "tsc -p tsconfig.server.json",
     "build:all": "npm run build && npm run build:server",
@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint src --ext ts,tsx",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "watch:routes": "tsx src/lib/api-gen.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",
