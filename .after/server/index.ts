@@ -183,7 +183,7 @@ const startServer = async () => {
     app.listen(port, () => {
       console.log(
         chalk.green(
-          `App is running in ${isProduction ? "production" : "development"} mode!`
+          `  ➜  App is running in ${isProduction ? "production" : "development"} mode!`
         )
       );
     });
