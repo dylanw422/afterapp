@@ -7,12 +7,12 @@
     "build": "vite build && tsc",
     "build:server": "tsc -p tsconfig.server.json",
     "build:all": "npm run build && npm run build:server",
-    "serve": "NODE_ENV=production node dist-server/server/index.js",
+    "serve": "NODE_ENV=production node dist-server/.after/server/index.js",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint src --ext ts,tsx",
     "typecheck": "tsc --noEmit",
-    "watch:routes": "tsx src/lib/api-gen.ts"
+    "watch:routes": "tsx .after/api-gen.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",

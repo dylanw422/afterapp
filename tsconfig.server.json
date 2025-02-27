@@ -8,6 +8,10 @@
     "noEmit": false,
     "allowImportingTsExtensions": false
   },
-  "include": ["src/server/**/*.ts", "src/app/api/**/*.ts", "src/lib/**/*.ts"],
+  "include": [
+    ".after/server/**/*.ts",
+    "src/app/api/**/*.ts",
+    "src/lib/**/*.ts"
+  ],
   "exclude": ["**/*.test.ts", "**/*.spec.ts"]
 }

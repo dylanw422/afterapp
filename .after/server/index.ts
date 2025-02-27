@@ -43,7 +43,7 @@ const __dirname = path.dirname(__filename);
 // Calculate the project root directory based on the server location
 // When compiled, server files will be in dist-server/server/
 // We need to go up to the project root
-const projectRoot = path.resolve(__dirname, "../../");
+const projectRoot = path.resolve(__dirname, "../../../");
 const distPath = path.join(projectRoot, "dist");
 
 // Automatically load all route files from the /api directory
@@ -60,7 +60,7 @@ const loadApiRoutes = async (app: express.Application) => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
-  const apiDir = path.join(__dirname, "../app/api");
+  const apiDir = path.join(__dirname, "../../src/app/api");
   const isProduction = process.env.NODE_ENV === "production";
   const extension = isProduction ? "js" : "ts";
 
